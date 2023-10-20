@@ -6,12 +6,14 @@ const port = 7000;
 
 app.use(express.static('static'));
 
+let connectedRobot = []
+
 app.get('/', (req, res) => {
     res.sendFile(resolve(__dirname, 'pages/index.html'));
 });
 
-app.get('/api/v1', (req, res) => {
-    res.json({ 'message': 'UI Server ok' });
+app.get('/robot/check', (req, res) => {
+    res.json(connectedRobot);
 });
 
 
@@ -25,9 +27,10 @@ app.post('/', (req, res) => {
         req.connection.remoteAddress || ''
     ).split(',');
 
-    console.log(ips)
-
     const clientIP = ips[0].trim();
+    if (!connectedRobot.includes(clientIP)) {
+        connectedRobot.push(clientIP)
+    }
 
     console.log(`Received a request from ${clientIP}`);
     // You can store the caller information or perform any required action here
