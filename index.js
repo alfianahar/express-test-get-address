@@ -16,8 +16,6 @@ app.get('/robot/check', (req, res) => {
     res.json(connectedRobot);
 });
 
-
-
 app.post('/', (req, res) => {
     // const caller = req.body.caller;
     let ips = (
