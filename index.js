@@ -31,7 +31,7 @@ app.post('/', (req, res) => {
 
     console.log(`Received a request from ${clientIP}`);
     // You can store the caller information or perform any required action here
-    res.send('UI Server has received the request.');
+    res.send('UI Server has received the request from: ' + clientIP);
 });
 
 app.listen(port, () => {
